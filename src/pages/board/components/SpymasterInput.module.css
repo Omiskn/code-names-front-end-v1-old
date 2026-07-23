@@ -1,0 +1,261 @@
+.spymasterCard {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 193, 7, 0.1) 0%,
+    rgba(255, 152, 0, 0.08) 100%
+  );
+  border-radius: 12px;
+  padding: 16px;
+  border: 2px solid rgba(255, 193, 7, 0.3);
+  box-shadow: 0 4px 12px rgba(255, 193, 7, 0.1);
+  width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
+  transition: all 0.5s ease-in;
+}
+
+/* .spymasterCardFadeAnimation {
+  opacity: 1;
+} */
+
+.spymasterCardFadeAnimation {
+  animation: fadeScale 0.5s ease forwards;
+}
+
+@keyframes fadeScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.sectionTitle {
+  color: #ff6b35;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.spymasterForm {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  min-width: 0;
+}
+
+.clueInputGroup {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  min-width: 0;
+}
+
+.clueInput {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 0.95rem;
+  color: #5d4037;
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid rgba(255, 107, 53, 0.3);
+  border-radius: 10px;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.clueInput:focus {
+  outline: none;
+  border-color: #ff6b35;
+  box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+}
+
+.clueInput::placeholder {
+  color: #a1887f;
+}
+
+.countInput {
+  flex-shrink: 0;
+  width: 60px;
+  min-width: 50px;
+  padding: 12px 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ff6b35;
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid rgba(255, 107, 53, 0.3);
+  border-radius: 10px;
+  text-align: center;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.countInput:focus {
+  outline: none;
+  border-color: #ff6b35;
+  box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+}
+
+.submitClueBtn {
+  padding: 12px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: white;
+  background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3);
+  width: 100%;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.submitClueBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 193, 7, 0.4);
+}
+
+.submitClueBtn:active {
+  transform: scale(0.98);
+}
+
+.submitIcon {
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .spymasterCard {
+    padding: 14px;
+  }
+
+  .clueInput {
+    padding: 11px 12px;
+  }
+
+  .countInput {
+    width: 55px;
+    padding: 11px 6px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .spymasterCard {
+    padding: 12px;
+    border-radius: 10px;
+  }
+
+  .sectionTitle {
+    font-size: 0.75rem;
+    margin-bottom: 10px;
+  }
+
+  .spymasterForm {
+    gap: 10px;
+  }
+
+  .clueInputGroup {
+    gap: 6px;
+  }
+
+  .clueInput {
+    padding: 10px 10px;
+    font-size: 0.9rem;
+    border-radius: 8px;
+  }
+
+  .countInput {
+    width: 48px;
+    min-width: 48px;
+    padding: 10px 4px;
+    font-size: 0.9rem;
+    border-radius: 8px;
+  }
+
+  .submitClueBtn {
+    padding: 10px;
+    font-size: 0.9rem;
+    border-radius: 8px;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+  .spymasterCard {
+    padding: 10px;
+    border-radius: 8px;
+  }
+
+  .sectionTitle {
+    font-size: 0.7rem;
+    margin-bottom: 8px;
+  }
+
+  .spymasterForm {
+    gap: 8px;
+  }
+
+  .clueInputGroup {
+    gap: 6px;
+  }
+
+  .clueInput {
+    padding: 8px 8px;
+    font-size: 0.85rem;
+  }
+
+  .countInput {
+    width: 42px;
+    min-width: 42px;
+    padding: 8px 2px;
+    font-size: 0.85rem;
+  }
+
+  .submitClueBtn {
+    padding: 8px;
+    font-size: 0.85rem;
+    gap: 6px;
+  }
+
+  .submitIcon {
+    font-size: 0.9rem;
+  }
+}
+
+/* Extra small mobile */
+@media (max-width: 360px) {
+  .clueInput {
+    padding: 7px 6px;
+    font-size: 0.8rem;
+  }
+
+  .countInput {
+    width: 38px;
+    min-width: 38px;
+    padding: 7px 2px;
+    font-size: 0.8rem;
+  }
+
+  .submitClueBtn {
+    padding: 7px;
+    font-size: 0.8rem;
+  }
+}

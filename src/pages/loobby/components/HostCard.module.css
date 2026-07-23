@@ -1,0 +1,51 @@
+.hostCard {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 107, 53, 0.05) 0%,
+    rgba(255, 152, 0, 0.05) 100%
+  );
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid rgba(255, 107, 53, 0.15);
+  flex-shrink: 0;
+}
+
+.hostHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hostBadge {
+  font-size: 1.5rem;
+}
+
+.hostInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.hostName {
+  color: #5d4037;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.hostRole {
+  color: #ff6b35;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 768px) {
+  .hostCard {
+    padding: 12px;
+  }
+
+  .hostName {
+    font-size: 1rem;
+  }
+}

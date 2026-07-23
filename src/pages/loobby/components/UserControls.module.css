@@ -1,0 +1,110 @@
+.rightColumn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 320px;
+  overflow: scroll;
+}
+
+.rightColumn::-webkit-scrollbar {
+  width: 6px;
+}
+
+.rightColumn::-webkit-scrollbar-track {
+  background: rgba(255, 107, 53, 0.05);
+  border-radius: 10px;
+}
+
+.rightColumn::-webkit-scrollbar-thumb {
+  background: rgba(255, 107, 53, 0.2);
+  border-radius: 10px;
+}
+
+.userControls {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid rgba(255, 107, 53, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+/* UserControls.module.css - Add these ready button styles */
+.readyButton {
+  padding: 16px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  background: #2c3e50;
+  background: linear-gradient(135deg, #ff6b35 0%, #ff8a3d 100%);
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 8px;
+  width: 100%;
+}
+
+.readyButton:hover:not(:disabled) {
+  background: linear-gradient(135deg, #2c3e50 0%, #3d5164 100%);
+  transform: translateY(-2px);
+}
+
+/* .readyButton:active:not(:disabled) {
+  transform: translateY(0);
+} */
+
+.readyButton:disabled {
+  background: #e9ecef;
+  color: #adb5bd;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.readyActive {
+  background: linear-gradient(135deg, #13a851 0%, #18d064 100%) !important;
+}
+
+.readyActive:hover:not(:disabled) {
+  background: linear-gradient(135deg, #2c3e50 0%, #3d5164 100%) !important;
+  /* box-shadow: 0 8px 16px rgba(39, 174, 96, 0.3) !important; */
+}
+
+.readyIcon {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+@media (max-width: 992px) {
+  .rightColumn {
+    min-width: auto;
+    order: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .userControls {
+    padding: 12px;
+    gap: 12px;
+  }
+
+  .readyButton {
+    padding: 12px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .userControls {
+    padding: 12px;
+    gap: 12px;
+  }
+}

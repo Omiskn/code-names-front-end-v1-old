@@ -1,0 +1,132 @@
+.footer {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 2px solid rgba(255, 107, 53, 0.1);
+  flex-shrink: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.startGameBtn {
+  padding: 14px 24px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: white;
+  background: linear-gradient(135deg, #ff6b35 0%, #ff8a3d 100%);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: 0 8px 20px rgba(255, 107, 53, 0.2);
+  /* flex: 1; */
+  /* max-width: 200px; */
+}
+
+.startGameBtn:hover {
+  background: linear-gradient(135deg, #ff8a3d 0%, #ff6b35 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(255, 107, 53, 0.3);
+}
+
+.startGameBtn:active {
+  transform: scale(0.98);
+}
+
+.startIcon {
+  font-size: 1.2rem;
+}
+
+.gameInfo {
+  flex: 2;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: rgba(255, 243, 224, 0.8);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 193, 7, 0.2);
+}
+
+.infoIcon {
+  font-size: 1rem;
+  color: #ffc107;
+}
+
+.infoText {
+  color: #5d4037;
+  font-size: 0.9rem;
+  font-weight: 500;
+  flex: 1;
+}
+
+@media (max-width: 992px) {
+  .footer {
+    flex-direction: column;
+    gap: 12px;
+    padding-top: 12px;
+    margin-top: 12px;
+  }
+
+  .startGameBtn {
+    max-width: 100%;
+    padding: 12px 20px;
+  }
+
+  .gameInfo {
+    width: 100%;
+    padding: 10px 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .startGameBtn {
+    font-size: 0.9rem;
+    padding: 10px 18px;
+  }
+
+  .startIcon {
+    font-size: 1rem;
+  }
+
+  .infoText {
+    font-size: 0.85rem;
+  }
+
+  .infoIcon {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    gap: 10px;
+    padding-top: 10px;
+    margin-top: 10px;
+  }
+
+  .startGameBtn {
+    font-size: 0.85rem;
+    padding: 10px 16px;
+    border-radius: 8px;
+  }
+
+  .gameInfo {
+    padding: 8px 12px;
+    border-radius: 8px;
+    gap: 8px;
+  }
+
+  .infoText {
+    font-size: 0.8rem;
+  }
+
+  .infoIcon {
+    font-size: 0.85rem;
+  }
+}

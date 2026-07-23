@@ -1,0 +1,67 @@
+/* CreateGameCard.module.css */
+.formSection {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.nameInput {
+  width: 100%;
+  padding: 18px;
+  font-size: 1.1rem;
+  color: #5d4037;
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid rgba(255, 107, 53, 0.3);
+  border-radius: 14px;
+  text-align: center;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  box-sizing: border-box;
+}
+
+.nameInput:focus {
+  outline: none;
+  border-color: #ff6b35;
+  box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+}
+
+.nameInput::placeholder {
+  color: #a1887f;
+  font-weight: 400;
+}
+
+.createButton {
+  width: 100%;
+  padding: 18px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(135deg, #ff6b35 0%, #ff8a3d 100%);
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(255, 107, 53, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  box-sizing: border-box;
+}
+
+.createButton:hover {
+  background: linear-gradient(135deg, #ff8a3d 0%, #ff6b35 100%);
+  transform: scale(1.02);
+  box-shadow: 0 12px 25px rgba(255, 107, 53, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.createButton:active {
+  transform: scale(0.98);
+}
+
+@media (max-width: 600px) {
+  .nameInput,
+  .createButton {
+    padding: 16px;
+    font-size: 1rem;
+  }
+}

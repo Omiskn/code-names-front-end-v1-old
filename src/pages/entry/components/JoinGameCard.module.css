@@ -1,0 +1,74 @@
+/* JoinGameCard.module.css */
+.joinSection {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.nameInput,
+.codeInput {
+  width: 100%;
+  padding: 18px;
+  font-size: 1.1rem;
+  color: #5d4037;
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid rgba(255, 107, 53, 0.3);
+  border-radius: 14px;
+  text-align: center;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  box-sizing: border-box;
+}
+
+.codeInput {
+  letter-spacing: 2px;
+}
+
+.nameInput:focus,
+.codeInput:focus {
+  outline: none;
+  border-color: #ff6b35;
+  box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+}
+
+.nameInput::placeholder,
+.codeInput::placeholder {
+  color: #a1887f;
+  letter-spacing: normal;
+  font-weight: 400;
+}
+
+.joinButton {
+  width: 100%;
+  padding: 18px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ff6b35;
+  background: transparent;
+  border: 2px solid #ff6b35;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  margin-top: 8px;
+}
+
+.joinButton:hover {
+  background: rgba(255, 107, 53, 0.1);
+  border-color: #ff8a3d;
+  transform: scale(1.02);
+}
+
+.joinButton:active {
+  transform: scale(0.98);
+}
+
+@media (max-width: 600px) {
+  .nameInput,
+  .codeInput,
+  .joinButton {
+    padding: 16px;
+    font-size: 1rem;
+  }
+}

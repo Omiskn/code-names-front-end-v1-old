@@ -1,0 +1,59 @@
+.gameSettings {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid rgba(255, 107, 53, 0.15);
+  flex-shrink: 0;
+}
+
+.settingsTitle {
+  color: #5d4037;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0 0 12px 0;
+}
+
+.settingsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.settingBtn {
+  padding: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #ff6b35;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(255, 107, 53, 0.2);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.settingBtn:hover {
+  background: rgba(255, 107, 53, 0.08);
+  border-color: rgba(255, 107, 53, 0.3);
+}
+
+.settingIcon {
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .gameSettings {
+    padding: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .settingsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

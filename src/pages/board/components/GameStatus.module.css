@@ -1,0 +1,176 @@
+.gameStatus {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sectionCard {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid rgba(255, 107, 53, 0.15);
+  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.08);
+}
+
+.sectionTitle {
+  color: #ff6b35;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.clueDisplay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.clueWord {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #ff6b35;
+  letter-spacing: 2px;
+}
+
+.clueCount {
+  font-size: 0.9rem;
+  color: #5d4037;
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+.turnInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.turnTeam {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #5d4037;
+}
+
+.turnRole {
+  font-size: 0.85rem;
+  color: #ff6b35;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.teamStats {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.teamScore {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+}
+
+.redScore {
+  background: rgba(255, 87, 34, 0.08);
+  border-color: rgba(255, 87, 34, 0.2);
+}
+
+.blueScore {
+  background: rgba(33, 150, 243, 0.08);
+  border-color: rgba(33, 150, 243, 0.2);
+}
+
+.scoreTeamName {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #5d4037;
+}
+
+.scoreValue {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #ff6b35;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .sectionCard {
+    padding: 12px;
+    border-radius: 10px;
+  }
+
+  .gameStatus {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .sectionTitle {
+    font-size: 0.75rem;
+    margin-bottom: 10px;
+  }
+
+  .clueWord {
+    font-size: 1.6rem;
+  }
+
+  .clueCount {
+    font-size: 0.8rem;
+  }
+
+  .turnTeam {
+    font-size: 1rem;
+  }
+
+  .turnRole {
+    font-size: 0.75rem;
+  }
+
+  .teamScore {
+    padding: 8px 12px;
+  }
+
+  .scoreTeamName {
+    font-size: 0.85rem;
+  }
+
+  .scoreValue {
+    font-size: 1.1rem;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+  .sectionCard {
+    padding: 10px;
+    border-radius: 8px;
+  }
+
+  .sectionTitle {
+    font-size: 0.7rem;
+    margin-bottom: 8px;
+  }
+
+  .clueWord {
+    font-size: 1.4rem;
+  }
+
+  .teamScore {
+    padding: 6px 10px;
+  }
+
+  .scoreTeamName {
+    font-size: 0.8rem;
+  }
+
+  .scoreValue {
+    font-size: 1rem;
+  }
+}
