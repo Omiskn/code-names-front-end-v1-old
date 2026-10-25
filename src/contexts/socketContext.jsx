@@ -7,8 +7,7 @@ export const SocketProvider = ({ children }) => {
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
-    const backendUrl =
-      process.env.REACT_APP_BACKEND_URL || "http://localhost:3001";
+    const backendUrl = process.env.BACKEND_URL || "http://localhost:3001";
     const s = io(backendUrl, {
       transports: ["websocket", "polling"],
     });
