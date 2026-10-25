@@ -2,6 +2,14 @@
 
 Responsive React client for the real-time multiplayer Code Names game.
 
+## About the Game
+
+**Code Names** is a word-association deduction game between two teams: **Red** and **Blue**.
+- **The Board:** A 5×5 grid of 25 word cards representing team agents, neutral bystanders, and one assassin.
+- **Spymasters:** See the secret identities of all cards and give a one-word clue plus a number.
+- **Operatives:** Work together to guess their team's cards based on the clue.
+- **How to Win:** The first team to reveal all their agents wins. Uncovering the assassin card causes an immediate loss!
+
 ## Features
 
 - **Role-based gameplay:** Dedicated views and controls for Spymasters (card key revelation, clue giving interface) and Operatives (guessing, word selection).
