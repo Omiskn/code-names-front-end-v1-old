@@ -32,7 +32,6 @@ const JoinGameCard = () => {
     setRoomCode("");
   };
 
-  // تسجيل listener مرة واحدة فقط
   useEffect(() => {
     if (!socket) return;
 
@@ -40,10 +39,16 @@ const JoinGameCard = () => {
       updatePlayers(players);
     };
 
+    const handleRoomError = (err) => {
+      alert(err);
+    };
+
     socket.on(SOCKET_EVENTS.ROOM_UPDATE, handleRoomUpdate);
+    socket.on("room_error", handleRoomError);
 
     return () => {
       socket.off(SOCKET_EVENTS.ROOM_UPDATE, handleRoomUpdate);
+      socket.off("room_error", handleRoomError);
     };
   }, [socket, updatePlayers]);
 

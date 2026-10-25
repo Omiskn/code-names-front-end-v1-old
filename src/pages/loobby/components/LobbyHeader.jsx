@@ -4,8 +4,9 @@ import { useRoom } from "../../../contexts/roomContext";
 
 const LobbyHeader = () => {
   const { room } = useRoom();
-  const playerCount = room.players.length;
-  const readyCount = room.players.filter((player) => player.isReady).length;
+  const playerCount = room?.players?.length || 0;
+  const readyCount =
+    room?.players?.filter((player) => player.isReady).length || 0;
   const { roomId: roomCode } = useParams();
 
   return (

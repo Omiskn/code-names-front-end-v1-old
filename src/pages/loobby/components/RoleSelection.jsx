@@ -6,27 +6,26 @@ import { useRoom } from "../../../contexts/roomContext";
 
 const RoleSelection = () => {
   const { me, room } = useRoom();
-  const playerId = localStorage.getItem("playerId");
   const roomId = localStorage.getItem("roomId");
   const socket = useSocket();
 
-  // const { updatePlayers, room } = useRoom();
-  // 'spymaster' or 'operative'
+  const effectiveRoomId = room?.id || room?.roomId || roomId;
 
   const handleRoleSelect = (role) => {
-    if (!me || !room) return;
-    // TODO: emit socket event for role selection
-
-    // Toggle: if same role is clicked, deselect it, otherwise select the new role
-    me.role = me.role === role ? null : role;
+    if (!me || !room || !socket) return;
+    const nextRole = me.role === role ? null : role;
 
     if (me.isReady) {
       socket.emit(SOCKET_EVENTS.TOGGLE_READY, {
         playerId: me.id,
-        roomId: room.id,
+        roomId: effectiveRoomId,
       });
     }
-    socket.emit(SOCKET_EVENTS.SELECT_ROLE, { roomId, playerId, role: me.role });
+    socket.emit(SOCKET_EVENTS.SELECT_ROLE, {
+      roomId: effectiveRoomId,
+      playerId: me.id,
+      role: nextRole,
+    });
   };
   return (
     <div className={styles.controlGroup}>

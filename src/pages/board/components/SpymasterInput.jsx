@@ -12,11 +12,21 @@ const SpymasterInput = () => {
 
   function handleSendClue() {
     if (!room || !socket) return;
+    const cleanClue = clue.trim();
+    if (!cleanClue) return alert("Please enter a clue word.");
+    if (number === "" || isNaN(Number(number)) || Number(number) < 0) {
+      return alert("Please enter a valid card count.");
+    }
 
-    const roomId = room.id;
-    const playerId = me.id;
+    const roomId = room.id || room.roomId || localStorage.getItem("roomId");
+    const playerId = me?.id || localStorage.getItem("playerId");
 
-    socket.emit(SOCKET_EVENTS.SEND_CLUE, { roomId, playerId, clue, number });
+    socket.emit(SOCKET_EVENTS.SEND_CLUE, {
+      roomId,
+      playerId,
+      clue: cleanClue,
+      number: Number(number),
+    });
     setClue("");
     setNumber("");
   }

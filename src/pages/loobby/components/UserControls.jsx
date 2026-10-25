@@ -11,13 +11,12 @@ const UserControls = () => {
   const socket = useSocket();
 
   const handleReadyToggle = () => {
-    if (!me || !room) return;
-    // TODO: emit socket event for ready status
+    if (!me || !room || !socket) return;
     if (me.team && me.role) {
-      me.isReady = !me.isReady;
+      const roomId = room.id || room.roomId || localStorage.getItem("roomId");
       socket.emit(SOCKET_EVENTS.TOGGLE_READY, {
         playerId: me.id,
-        roomId: room.id,
+        roomId,
       });
     }
   };

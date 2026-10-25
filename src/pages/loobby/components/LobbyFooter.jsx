@@ -13,9 +13,24 @@ const LobbyFooter = ({ waitingMessage }) => {
 
   function starthandler() {
     if (!socket || !room) return;
+    const roomId = room.id || room.roomId || localStorage.getItem("roomId");
+    const playerId = me?.id || localStorage.getItem("playerId");
 
-    socket.emit(SOCKET_EVENTS.START_GAME, room.id);
+    socket.emit(SOCKET_EVENTS.START_GAME, { roomId, playerId });
   }
+
+  useEffect(() => {
+    if (!socket) return;
+
+    const handleGameError = (errMsg) => {
+      alert(errMsg);
+    };
+
+    socket.on("game_error", handleGameError);
+    return () => {
+      socket.off("game_error", handleGameError);
+    };
+  }, [socket]);
 
   useEffect(() => {
     if (!socket || !room) return;

@@ -6,28 +6,32 @@ import { SOCKET_EVENTS } from "../../../config";
 import { useRoom } from "../../../contexts/roomContext";
 
 const TeamSelection = () => {
-  const playerId = localStorage.getItem("playerId");
   const roomId = localStorage.getItem("roomId");
   const socket = useSocket();
   const { me, room } = useRoom();
-  const playersCount = room.players.length;
-  const redTeamCount = room.players.filter(
-    (player) => player.team === "red"
-  ).length;
-  const blueTeamCount = room.players.filter(
-    (player) => player.team === "blue"
-  ).length;
+  const effectiveRoomId = room?.id || room?.roomId || roomId;
+  const playersCount = room.players?.length || 0;
+  const redTeamCount =
+    room.players?.filter((player) => player.team?.toLowerCase() === "red")
+      .length || 0;
+  const blueTeamCount =
+    room.players?.filter((player) => player.team?.toLowerCase() === "blue")
+      .length || 0;
 
   const handleTeamSelect = (team) => {
-    if (!me || !room) return;
-    me.team = me.team === team ? null : team;
+    if (!me || !room || !socket) return;
+    const nextTeam = me.team === team ? null : team;
     if (me.isReady) {
       socket.emit(SOCKET_EVENTS.TOGGLE_READY, {
         playerId: me.id,
-        roomId: room.id,
+        roomId: effectiveRoomId,
       });
     }
-    socket.emit(SOCKET_EVENTS.SELECT_TEAM, { roomId, playerId, team: me.team });
+    socket.emit(SOCKET_EVENTS.SELECT_TEAM, {
+      roomId: effectiveRoomId,
+      playerId: me.id,
+      team: nextTeam,
+    });
   };
   return (
     <div className={styles.controlGroup}>

@@ -25,6 +25,8 @@ function RoomInfo({ title, content, turn = "red" }) {
 
 const BoardHeader = () => {
   const { room } = useRoom();
+  const roomId = room?.id || room?.roomId || localStorage.getItem("roomId");
+  const playersCount = room?.players?.length || 0;
 
   return (
     <div className={styles.headerSection}>
@@ -32,28 +34,24 @@ const BoardHeader = () => {
         <h1 className={styles.title}>Code Names</h1>
         <RoomInfo
           title="Room"
-          content={room.id}
-          turn={room.game?.currentTurn}
+          content={roomId}
+          turn={room?.game?.currentTurn}
         />
         <RoomInfo
           title="Turn"
-          content={room.game?.currentTurn}
-          turn={room.game?.currentTurn}
+          content={room?.game?.currentTurn}
+          turn={room?.game?.currentTurn}
         />
         <RoomInfo
           title="Phase"
-          content={room.game?.phase}
-          turn={room.game?.currentTurn}
+          content={room?.game?.phase}
+          turn={room?.game?.currentTurn}
         />
       </div>
       <div className={styles.headerRight}>
         <div className={styles.stats}>
-          {/* <div className={styles.stat}>
-            <span className={styles.statValue}>{timer}</span>
-            <span className={styles.statLabel}>Time</span>
-          </div> */}
           <div className={styles.stat}>
-            <span className={styles.statValue}>{room.players.length}</span>
+            <span className={styles.statValue}>{playersCount}</span>
             <span className={styles.statLabel}>Players</span>
           </div>
         </div>

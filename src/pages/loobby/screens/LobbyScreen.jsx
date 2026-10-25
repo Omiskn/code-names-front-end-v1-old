@@ -23,8 +23,6 @@ const LobbyScreen = () => {
       playerId,
     });
 
-    console.log("nigga");
-
     const handleRoomState = (room) => {
       setRoom(room);
     };
@@ -34,7 +32,7 @@ const LobbyScreen = () => {
     return () => {
       socket.off(SOCKET_EVENTS.SEND_ROOM_STATE, handleRoomState);
     };
-  }, [socket, roomId, playerId]);
+  }, [socket, roomId, playerId, setRoom]);
 
   useEffect(() => {
     if (!socket) return;

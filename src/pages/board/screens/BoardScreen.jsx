@@ -27,7 +27,7 @@ const BoardScreen = () => {
     return () => {
       socket.off(SOCKET_EVENTS.GAME_UPDATE, handleGameUpdate);
     };
-  }, [socket, setRoom, room]);
+  }, [socket, setRoom]);
 
   useEffect(() => {
     if (!socket) return;
@@ -46,9 +46,13 @@ const BoardScreen = () => {
     return () => {
       socket.off(SOCKET_EVENTS.SEND_ROOM_STATE, handleRoomState);
     };
-  }, [socket, roomId, playerId]);
+  }, [socket, roomId, playerId, setRoom]);
 
-  // useEffect(() => {}, []);
+  const isSpymaster = me?.role?.toLowerCase() === "spymaster";
+  const isMyTeamTurn =
+    room?.game?.currentTurn?.toLowerCase() === me?.team?.toLowerCase();
+  const isSpymasterPhase = room?.game?.phase === "spymaster";
+  const showSpymasterInput = isSpymaster && isMyTeamTurn && isSpymasterPhase;
 
   return (
     <div className={styles.container}>
@@ -59,11 +63,7 @@ const BoardScreen = () => {
           <div className={styles.leftColumn}>
             <GameStatus />
 
-            {me?.role.toUpperCase() === "SPYMASTER" &&
-            room.game?.currentTurn === me.team &&
-            room.game?.phase !== "guessing" ? (
-              <SpymasterInput />
-            ) : null}
+            {showSpymasterInput ? <SpymasterInput /> : null}
           </div>
 
           <div className={styles.centerColumn}>
@@ -71,9 +71,8 @@ const BoardScreen = () => {
           </div>
 
           <div className={styles.rightColumn}>
-            {/* <PlayersPanel players={players} currentUser={currentUserId} /> */}
             <GameLog />
-            {room.game?.phase === "spymaster" ? null : <BoardFooter />}
+            <BoardFooter />
           </div>
         </div>
       </div>
