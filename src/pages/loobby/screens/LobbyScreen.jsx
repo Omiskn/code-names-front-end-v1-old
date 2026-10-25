@@ -9,8 +9,11 @@ import PlayersPanel from "../components/PlayersPanel";
 import UserControls from "../components/UserControls";
 import LobbyFooter from "../components/LobbyFooter";
 
+import { useToast } from "../../../contexts/toastContext";
+
 const LobbyScreen = () => {
   const navigate = useNavigate();
+  const { showToast } = useToast();
   const { roomId: paramRoomId } = useParams();
   const { updatePlayers, setRoom } = useRoom();
   const socket = useSocket();
@@ -22,7 +25,7 @@ const LobbyScreen = () => {
     if (!socket) return;
 
     const handleRoomError = (err) => {
-      alert(err || "This room does not exist!");
+      showToast(err || "This room does not exist!");
       navigate("/");
     };
 
@@ -30,7 +33,7 @@ const LobbyScreen = () => {
     return () => {
       socket.off("room_error", handleRoomError);
     };
-  }, [socket, navigate]);
+  }, [socket, navigate, showToast]);
 
   useEffect(() => {
     if (!socket) return;

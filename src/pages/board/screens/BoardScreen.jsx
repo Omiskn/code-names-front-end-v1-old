@@ -11,8 +11,11 @@ import { SOCKET_EVENTS } from "../../../config";
 import { useSocket } from "../../../contexts/socketContext";
 import { useRoom } from "../../../contexts/roomContext";
 
+import { useToast } from "../../../contexts/toastContext";
+
 const BoardScreen = () => {
   const navigate = useNavigate();
+  const { showToast } = useToast();
   const socket = useSocket();
   const roomId = localStorage.getItem("roomId");
   const playerId = localStorage.getItem("playerId");
@@ -22,7 +25,7 @@ const BoardScreen = () => {
     if (!socket) return;
 
     const handleRoomError = (err) => {
-      alert(err || "This room does not exist!");
+      showToast(err || "This room does not exist!");
       navigate("/");
     };
 
@@ -30,7 +33,7 @@ const BoardScreen = () => {
     return () => {
       socket.off("room_error", handleRoomError);
     };
-  }, [socket, navigate]);
+  }, [socket, navigate, showToast]);
 
   useEffect(() => {
     if (!socket) return;

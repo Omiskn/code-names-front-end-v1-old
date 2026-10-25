@@ -6,8 +6,11 @@ import { useSocket } from "../../../contexts/socketContext";
 import styles from "./LobbyFooter.module.css";
 import { useNavigate } from "react-router";
 
+import { useToast } from "../../../contexts/toastContext";
+
 const LobbyFooter = ({ waitingMessage }) => {
   const { room, setRoom, me } = useRoom();
+  const { showToast } = useToast();
   const socket = useSocket();
   const navigate = useNavigate();
 
@@ -23,14 +26,14 @@ const LobbyFooter = ({ waitingMessage }) => {
     if (!socket) return;
 
     const handleGameError = (errMsg) => {
-      alert(errMsg);
+      showToast(errMsg);
     };
 
     socket.on("game_error", handleGameError);
     return () => {
       socket.off("game_error", handleGameError);
     };
-  }, [socket]);
+  }, [socket, showToast]);
 
   useEffect(() => {
     if (!socket || !room) return;

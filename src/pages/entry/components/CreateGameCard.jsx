@@ -7,18 +7,20 @@ import { v4 as uuidv4 } from "uuid";
 import { SOCKET_EVENTS } from "../../../config";
 import { useNavigate } from "react-router";
 
+import { useToast } from "../../../contexts/toastContext";
+
 const CreateGameCard = () => {
-  const { joinRoom, updatePlayers, room } = useRoom();
+  const { joinRoom, updatePlayers } = useRoom();
+  const { showToast } = useToast();
   const socket = useSocket();
   const [playerName, setPlayerName] = useState("");
   const navigate = useNavigate();
   const playerId = localStorage.getItem("playerId");
 
   const handleCreateRoom = () => {
-    if (!playerName) return alert("Enter your name.");
-    if (!socket) return alert("Connecting to server, please wait...");
-    // const newRoomId = uuidv4().slice(0, 6);
-    // const roomId = localStorage.getItem("roomId");
+    const cleanName = playerName.trim();
+    if (!cleanName) return showToast("Please enter your name.");
+    if (!socket) return showToast("Connecting to server, please wait...", "info");
     const roomId = uuidv4().slice(0, 6);
 
     // console.log(roomId);
@@ -56,10 +58,6 @@ const CreateGameCard = () => {
       socket.off(SOCKET_EVENTS.ROOM_UPDATE, handleRoomUpdate);
     };
   }, [socket, updatePlayers]);
-
-  useEffect(() => {
-    // console.log("ROOM UPDATED:", room);
-  }, [room]);
 
   return (
     <EntryCard

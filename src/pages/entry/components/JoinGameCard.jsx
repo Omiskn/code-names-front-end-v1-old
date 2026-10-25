@@ -6,10 +6,13 @@ import { useSocket } from "../../../contexts/socketContext";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 
+import { useToast } from "../../../contexts/toastContext";
+
 const JoinGameCard = () => {
   const navigate = useNavigate();
   const socket = useSocket();
   const { updatePlayers } = useRoom();
+  const { showToast } = useToast();
   const [playerName, setPlayerName] = useState("");
   const [roomCode, setRoomCode] = useState("");
 
@@ -18,9 +21,9 @@ const JoinGameCard = () => {
     const cleanName = playerName.trim();
     const cleanRoomCode = roomCode.trim();
 
-    if (!cleanName) return alert("Enter your name.");
-    if (!cleanRoomCode) return alert("Enter room code.");
-    if (!socket) return alert("Connecting to server, please wait...");
+    if (!cleanName) return showToast("Please enter your name.");
+    if (!cleanRoomCode) return showToast("Please enter the room code.");
+    if (!socket) return showToast("Connecting to server, please wait...", "info");
 
     socket.emit(
       SOCKET_EVENTS.JOIN_ROOM,
@@ -31,7 +34,7 @@ const JoinGameCard = () => {
       },
       (res) => {
         if (res?.error) {
-          alert(res.error);
+          showToast(res.error);
           return;
         }
         localStorage.setItem("roomId", cleanRoomCode);
@@ -50,7 +53,7 @@ const JoinGameCard = () => {
     };
 
     const handleRoomError = (err) => {
-      alert(err);
+      showToast(err);
     };
 
     socket.on(SOCKET_EVENTS.ROOM_UPDATE, handleRoomUpdate);
@@ -60,7 +63,7 @@ const JoinGameCard = () => {
       socket.off(SOCKET_EVENTS.ROOM_UPDATE, handleRoomUpdate);
       socket.off("room_error", handleRoomError);
     };
-  }, [socket, updatePlayers]);
+  }, [socket, updatePlayers, showToast]);
 
   return (
     <EntryCard

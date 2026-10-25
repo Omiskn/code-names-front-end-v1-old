@@ -4,18 +4,21 @@ import { useSocket } from "../../../contexts/socketContext";
 import { useRoom } from "../../../contexts/roomContext";
 import { SOCKET_EVENTS } from "../../../config";
 
+import { useToast } from "../../../contexts/toastContext";
+
 const SpymasterInput = () => {
   const [number, setNumber] = useState("");
   const [clue, setClue] = useState("");
   const { room, me } = useRoom();
+  const { showToast } = useToast();
   const socket = useSocket();
 
   function handleSendClue() {
     if (!room || !socket) return;
     const cleanClue = clue.trim();
-    if (!cleanClue) return alert("Please enter a clue word.");
+    if (!cleanClue) return showToast("Please enter a clue word.");
     if (number === "" || isNaN(Number(number)) || Number(number) < 0) {
-      return alert("Please enter a valid card count.");
+      return showToast("Please enter a valid card count.");
     }
 
     const roomId = room.id || room.roomId || localStorage.getItem("roomId");
