@@ -1,5 +1,5 @@
-// LobbyScreen.jsx (updated)
 import { useEffect } from "react";
+import { useNavigate, useParams } from "react-router";
 import { useSocket } from "../../../contexts/socketContext";
 import { useRoom } from "../../../contexts/roomContext";
 import { SOCKET_EVENTS } from "../../../config";
@@ -10,10 +10,27 @@ import UserControls from "../components/UserControls";
 import LobbyFooter from "../components/LobbyFooter";
 
 const LobbyScreen = () => {
+  const navigate = useNavigate();
+  const { roomId: paramRoomId } = useParams();
   const { updatePlayers, setRoom } = useRoom();
   const socket = useSocket();
-  const roomId = localStorage.getItem("roomId");
+  const storedRoomId = localStorage.getItem("roomId");
+  const roomId = paramRoomId || storedRoomId;
   const playerId = localStorage.getItem("playerId");
+
+  useEffect(() => {
+    if (!socket) return;
+
+    const handleRoomError = (err) => {
+      alert(err || "This room does not exist!");
+      navigate("/");
+    };
+
+    socket.on("room_error", handleRoomError);
+    return () => {
+      socket.off("room_error", handleRoomError);
+    };
+  }, [socket, navigate]);
 
   useEffect(() => {
     if (!socket) return;

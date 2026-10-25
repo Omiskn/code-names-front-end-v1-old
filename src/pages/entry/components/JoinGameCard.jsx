@@ -15,21 +15,31 @@ const JoinGameCard = () => {
 
   const handleJoinRoom = () => {
     const playerId = localStorage.getItem("playerId");
-    if (!playerName) return alert("Enter your name.");
-    if (!roomCode) return alert("Enter room code.");
+    const cleanName = playerName.trim();
+    const cleanRoomCode = roomCode.trim();
 
-    socket.emit(SOCKET_EVENTS.JOIN_ROOM, {
-      playerId,
-      roomId: roomCode,
-      playerName,
-    });
+    if (!cleanName) return alert("Enter your name.");
+    if (!cleanRoomCode) return alert("Enter room code.");
+    if (!socket) return alert("Connecting to server, please wait...");
 
-    localStorage.setItem("roomId", roomCode);
-
-    navigate(`/lobby/${roomCode}`);
-
-    setPlayerName("");
-    setRoomCode("");
+    socket.emit(
+      SOCKET_EVENTS.JOIN_ROOM,
+      {
+        playerId,
+        roomId: cleanRoomCode,
+        playerName: cleanName,
+      },
+      (res) => {
+        if (res?.error) {
+          alert(res.error);
+          return;
+        }
+        localStorage.setItem("roomId", cleanRoomCode);
+        navigate(`/lobby/${cleanRoomCode}`);
+        setPlayerName("");
+        setRoomCode("");
+      }
+    );
   };
 
   useEffect(() => {

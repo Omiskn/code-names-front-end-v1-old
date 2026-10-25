@@ -6,15 +6,31 @@ import BoardGrid from "../components/BoardGrid";
 import GameLog from "../components/GameLog";
 import BoardFooter from "../components/BoardFooter";
 import { useEffect } from "react";
+import { useNavigate } from "react-router";
 import { SOCKET_EVENTS } from "../../../config";
 import { useSocket } from "../../../contexts/socketContext";
 import { useRoom } from "../../../contexts/roomContext";
 
 const BoardScreen = () => {
+  const navigate = useNavigate();
   const socket = useSocket();
   const roomId = localStorage.getItem("roomId");
   const playerId = localStorage.getItem("playerId");
   const { setRoom, room, me } = useRoom();
+
+  useEffect(() => {
+    if (!socket) return;
+
+    const handleRoomError = (err) => {
+      alert(err || "This room does not exist!");
+      navigate("/");
+    };
+
+    socket.on("room_error", handleRoomError);
+    return () => {
+      socket.off("room_error", handleRoomError);
+    };
+  }, [socket, navigate]);
 
   useEffect(() => {
     if (!socket) return;
